@@ -12,8 +12,9 @@
 <div th:replace="base::logo"></div>
 <p/>
 
-<div class="container card " style="width: 18rem;">
-    <div th:each="car : ${cars}">
+<div class="container ">
+    <div class="row">
+    <div class="col-md-4" th:each="car : ${cars}">
         <div class="card-body">
             <div th:if="${car.carimg != ''}">
                 <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
@@ -22,7 +23,7 @@
                 <span th:text="${car.make + ' ' +  car.model}"></span>
             </h4>
             <p class="card-text">
-                <strong>Category: </strong><br/>
+                <strong>Category: </strong>
                 <span
                         th:if="${car.category != null}">
                 <span
@@ -44,6 +45,7 @@
                     </a>
         </div>
         </div>
+</div>
 </div>
 
 

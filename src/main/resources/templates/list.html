@@ -12,8 +12,8 @@
 <div th:replace="base :: navlinks"></div>
 
 <div th:replace="base:: logo "></div>
-<div class="row">
-<div class="container col-md-4 ">
+
+<div class="container  row">
         <span th:each="category : ${categories}">
             <span class="cat-btn">
                 <a th:href="@{/detailcategory/{id}(id=${category.id})}">[[${category
@@ -21,12 +21,12 @@
                 </a>
             </span>
         </span>
-</div>
+
 </div>
 
+<div class="container">
 <div class="row">
-<div class="container col-md-4 " style="width: 18rem;">
-    <div class=""  th:each="car : ${cars}">
+    <div class="col-md-4"  th:each="car : ${cars}">
         <div class="card-img-top" th:if="${car.carimg != ''}">
             <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
         </div>
