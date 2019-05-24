@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,22 +10,33 @@
 <body>
 <div th:replace="base :: navlinks"></div>
 
+<div th:replace="base::logo"></div>
 <p/>
 
-<div class="col-xs text-center">
+<div class="container col-xs text-center">
 
-    <div class="card">
+    <div class="container card">
         <div class="card-body">
-            <div th:if="${car.carURL != ''}">
-                <img class="card-img-top user-img" th:src="${car.carURL}" alt="car">
+            <div th:if="${car.carimg != ''}">
+                <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
             </div>
-            <h4 class="card-title text-center"><span th:text="${car.manufacturer + ' ' +  car.model}"></span></h4>
-            <p class="card-text"><strong>Category: </strong><span
-                    th:if="${car.category != null}"><span
-                    th:text="${car.category.categoryName}"></span></span></p>
+            <h4 class="card-title text-center">
+                <span th:text="${car.make + ' ' +  car.model}"></span>
+            </h4>
+            <p class="card-text">
+                <strong>Category: </strong>
+                <span
+                    th:if="${car.category != null}">
+                <span
+                    th:text="${car.category.categoryName}">
+
+                </span>
+            </span>
+            </p>
             <p class="card-text"><strong>Year: </strong><span th:text="${car.year}"></span></p>
-            <p class="card-text"><strong>MSRP: $</strong><span
-                    th:text="${#numbers.formatDecimal(car.msrp, 0, 'COMMA', 2, 'POINT')}"></span></p>
+            <p class="card-text"><strong>Price: $</strong><span
+                    th:text="${#numbers.formatDecimal(car.price, 0, 'COMMA', 2, 'POINT')}"></span>
+            </p>
             <div class="text-center">
                 <a class="btn btn-warning" th:href="@{/update/{id}(id=${car.id})}">Update</a>
                 <a class="btn btn-warning" th:href="@{/delete/{id}(id=${car.id})}">Delete</a>
@@ -33,9 +44,9 @@
         </div>
     </div>
 
-</div><!--end div class col-xs-->
-</div><!--end div class col-xs-->
+</div>
 
+<div th:replace="base::footer"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

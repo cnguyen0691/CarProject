@@ -8,16 +8,17 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String manufacturer;
+    private String make;
     private String model;
     private String year;
-    private float msrp;
-    private String carURL;
+    private float price;
+    private String carimg;
     //private String category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
+
 
     public long getId() {
         return id;
@@ -27,12 +28,12 @@ public class Car {
         this.id = id;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
+    public String getMake() {
+        return make;
     }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setMake(String make) {
+        this.make = make;
     }
 
     public String getModel() {
@@ -51,20 +52,20 @@ public class Car {
         this.year = year;
     }
 
-    public float getMsrp() {
-        return msrp;
+    public float getPrice() {
+        return price;
     }
 
-    public void setMsrp(float msrp) {
-        this.msrp = msrp;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
-    public String getCarURL() {
-        return carURL;
+    public String getCarimg() {
+        return carimg;
     }
 
-    public void setCarURL(String carURL) {
-        this.carURL = carURL;
+    public void setCarimg(String carimg) {
+        this.carimg = carimg;
     }
 
     public Category getCategory() {

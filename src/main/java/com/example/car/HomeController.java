@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
@@ -50,7 +51,7 @@ public class HomeController {
     }
 
     @PostMapping("/processcar")
-    public String processForm(@ModelAttribute Car car, @RequestParam
+    public String processForm(@Valid @ModelAttribute Car car, @RequestParam
             ("file")
             MultipartFile file, @RequestParam("hiddenImgURL") String ImgURL) {
 
@@ -58,7 +59,7 @@ public class HomeController {
             try {
                 Map uploadResult = cloudc.upload(file.getBytes(),
                         ObjectUtils.asMap("resourcetype", "auto"));
-                car.setCarURL(uploadResult.get("url").toString());
+                car.setCarimg(uploadResult.get("url").toString());
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -68,10 +69,10 @@ public class HomeController {
 
         else {
             if(!ImgURL.isEmpty()) {
-                car.setCarURL(ImgURL);
+                car.setCarimg(ImgURL);
             }
             else {
-                car.setCarURL("");
+                car.setCarimg("");
             }
         }
 
@@ -99,9 +100,9 @@ public class HomeController {
         model.addAttribute("categories", categoryRepository.findAll());
         car = carRepository.findById(id).get();
         model.addAttribute("car", carRepository.findById(id));
-        model.addAttribute("imageURL", car.getCarURL());
+        model.addAttribute("imageURL", car.getCarimg());
 
-        if(car.getCarURL().isEmpty()) {
+        if(car.getCarimg().isEmpty()) {
             model.addAttribute("imageLabel", "Upload Image");
         }
         else {

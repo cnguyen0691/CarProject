@@ -10,20 +10,25 @@
 <body>
 <nav th:fragment="navlinks" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/" style="font-family: cursive; color: cadetblue">Auto List</a>
+
+    <img th:src="@{/image/bentley.png}"  width="80px" height="80px" alt="logo"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav"> <img th:src="@{/img/bently.png}" alt="logo"/>
+        <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/addcategory">Add Category</a>
             <a class="nav-item nav-link" href="/addcar">Add Car</a>
+
+
         </div>
+
     </div>
 </nav>
 
-<div class="container logo" >
-    <h1>H&O Dealer</h1>
+<div th:fragment="logo" class="container">
+    <img th:src="@{/image/logo.png}" width="500px" height="500px"/>
 </div>
 
 <footer th:fragment="footer" class="footer">

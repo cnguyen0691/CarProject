@@ -8,9 +8,11 @@
 
 </head>
 <body>
+<!--Nav-->
 <div th:replace="base::navlinks"></div>
-<div class="container jumbotron">
 
+<!--list-->
+<div class="container jumbotron">
     <form action="#"
           th:action="@{/processcategory}"
           th:object="${category}"
@@ -24,6 +26,7 @@
         </div>
 
         <input class="submit-btn" type="submit" value="Submit"/>
+    </form>
 
 </div>
 <div th:replace="base ::footer">

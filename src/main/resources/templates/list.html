@@ -12,34 +12,49 @@
 <div th:replace="base :: navlinks"></div>
 
 
-
-<p class="row">
+<div th:replace="base:: logo "></div>
+<div class="container ">
         <span th:each="category : ${categories}">
-            <span class="cat-btn"><a th:href="@{/detailcategory/{id}(id=${category.id})}">[[${category
-                .categoryName}]]</a></span>
+            <span class="cat-btn">
+                <a th:href="@{/detailcategory/{id}(id=${category.id})}">[[${category
+                .categoryName}]]
+                </a>
+            </span>
         </span>
-</p>
 
-<div class="row text-center">
-    <div th:each="car : ${cars}">
+</div>
 
-        <div class="col-sm-3">
-            <div class="card text-center">
-                <div class="card-header text-center"><span
-                        th:text="${car.manufacturer + ' ' +  car.model}"></span></div>
-                <div class="card-body">
-                    <div th:if="${car.carURL != ''}">
-                        <img class="card-img-top user-img" th:src="${car.carURL}" alt="car">
-                    </div>
-                    <a class="card-link btn btn-warning"
-                       th:href="@{/detail/{id}(id=${car.id})}">More
-                        Info</a>
-                </div>
-            </div>
-        </div><!--end div class col-->
+<div class="container card row" style="width: 18rem;">
+    <div  th:each="car : ${cars}">
+        <div class="card-img-top" th:if="${car.carimg != ''}">
+            <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
+        </div>
+        <div class=" card-body">
+            <h5 class="card-title">
+                <span th:text="${car.make}"></span>
+            </h5>
+            <p class="card-text">
+                <strong>Category: </strong>
+                <span
+                        th:if="${car.category != null}">
+                <span
+                        th:text="${car.category.categoryName}">
 
-    </div><!--end div th:each-->
-</div><!--end div class row-->
+                </span>
+            </span>
+            </p>
+            <p class="card-text"><strong>Year: </strong><span th:text="${car.year}"></span></p>
+            <p class="card-text"><strong>Price: $</strong><span
+                    th:text="${#numbers.formatDecimal(car.price, 0, 'COMMA', 2, 'POINT')}"></span>
+            </p>
+        </div>
+<a class="card-link btn btn-warning"
+   th:href="@{/detail/{id}(id=${car.id})}">More
+    Info</a>
+    </div>
+</div>
+
+<div th:replace="base::footer"></div>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
