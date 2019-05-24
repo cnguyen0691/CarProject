@@ -11,17 +11,20 @@
 <div th:replace="base::navlinks"></div>
 <div class="container jumbotron">
 
-<form action="#" th:action="@{/processcategory}" th:object="${category}">
-    <input th:field="*{id}" type="hidden"/>
+    <form action="#"
+          th:action="@{/processcategory}"
+          th:object="${category}"
+          method="post">
 
-    <div class="form-group">
-        <label for="category">Category:</label>
-        <input class="form-control" type="text" id="category" th:field="*{categoryName}"/>
-    </div>
+        <input type="hidden" th:field="*{id}">
 
-    <input class="submit-btn" type="submit" value="Submit"/>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input class="form-control" type="text" id="category" th:field="*{categoryName}"/>
+        </div>
 
-</form>
+        <input class="submit-btn" type="submit" value="Submit"/>
+
 </div>
 <div th:replace="base ::footer">
 </div>

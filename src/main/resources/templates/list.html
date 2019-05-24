@@ -11,7 +11,7 @@
 
 <div th:replace="base :: navlinks"></div>
 
-<!--<div th:if="${not #lists.isEmpty(messages}">No content yet.</div>-->
+
 
 <p class="row">
         <span th:each="category : ${categories}">
@@ -26,10 +26,10 @@
         <div class="col-sm-3">
             <div class="card text-center">
                 <div class="card-header text-center"><span
-                        th:text="${car.make + ' ' +  car.model}"></span></div>
+                        th:text="${car.manufacturer + ' ' +  car.model}"></span></div>
                 <div class="card-body">
-                    <div th:if="${car.carimgae != ''}">
-                        <img class="card-img-top user-img" th:src="${car.carimgae}" alt="car">
+                    <div th:if="${car.carURL != ''}">
+                        <img class="card-img-top user-img" th:src="${car.carURL}" alt="car">
                     </div>
                     <a class="card-link btn btn-warning"
                        th:href="@{/detail/{id}(id=${car.id})}">More

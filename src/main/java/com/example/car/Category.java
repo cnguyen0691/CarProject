@@ -20,6 +20,9 @@ public class Category {
     @Fetch(value = FetchMode.SUBSELECT)
     public Set<Car>cars;
 
+    public Category() {
+    }
+
     public long getId() {
         return id;
     }

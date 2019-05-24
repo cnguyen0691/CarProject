@@ -20,13 +20,13 @@ public class HomeController {
     CategoryRepository categoryRepository;
 
     @Autowired
-    CloudinaryConfig cloudinaryConfig;
+    CloudinaryConfig cloudc;
 
     @RequestMapping("/")
     public String listMessages(@ModelAttribute Car car, @ModelAttribute Category category, Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("cars", carRepository.findAll());
-        return "home";
+        return "list";
     }
 
     @GetMapping("/addcategory")
@@ -56,9 +56,9 @@ public class HomeController {
 
         if(!file.isEmpty()) {
             try {
-                Map uploadResult = cloudinaryConfig.upload(file.getBytes(),
+                Map uploadResult = cloudc.upload(file.getBytes(),
                         ObjectUtils.asMap("resourcetype", "auto"));
-                car.setCarimgae(uploadResult.get("url").toString());
+                car.setCarURL(uploadResult.get("url").toString());
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -68,10 +68,10 @@ public class HomeController {
 
         else {
             if(!ImgURL.isEmpty()) {
-                car.setCarimgae(ImgURL);
+                car.setCarURL(ImgURL);
             }
             else {
-                car.setCarimgae("");
+                car.setCarURL("");
             }
         }
 
@@ -82,9 +82,9 @@ public class HomeController {
     @RequestMapping("/detailcategory/{id}")
     public String viewCategory(@PathVariable("id") long id, Model model) {
         Category category = categoryRepository.findById(id).get();
-        model.addAttribute("cars", carRepository.findById(id).get());
+        model.addAttribute("cars", carRepository.findAllByCategory(category));
         model.addAttribute("category", category);
-        return "categorylist";
+        return "categorydetail";
     }
 
     @RequestMapping("/detail/{id}")
@@ -99,9 +99,9 @@ public class HomeController {
         model.addAttribute("categories", categoryRepository.findAll());
         car = carRepository.findById(id).get();
         model.addAttribute("car", carRepository.findById(id));
-        model.addAttribute("imageURL", car.getCarimgae());
+        model.addAttribute("imageURL", car.getCarURL());
 
-        if(car.getCarimgae().isEmpty()) {
+        if(car.getCarURL().isEmpty()) {
             model.addAttribute("imageLabel", "Upload Image");
         }
         else {

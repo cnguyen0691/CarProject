@@ -1,7 +1,6 @@
 package com.example.car;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Car {
@@ -9,40 +8,16 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
-    private String make;
-
-    @NotNull
+    private String manufacturer;
     private String model;
+    private String year;
+    private float msrp;
+    private String carURL;
+    //private String category;
 
-    @NotNull
-    private int year;
-
-    @NotNull
-    private long price;
-
-    @NotNull
-    private String carimgae;
-
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
-
-    public Car() {
-    }
-
-    public Car(@NotNull String make,
-               @NotNull String model,
-               @NotNull int year,
-               @NotNull long price,
-               @NotNull String carimgae) {
-        this.make = make;
-        this.model = model;
-        this.year = year;
-        this.price = price;
-        this.carimgae = carimgae;
-
-    }
 
     public long getId() {
         return id;
@@ -52,12 +27,12 @@ public class Car {
         this.id = id;
     }
 
-    public String getMake() {
-        return make;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public String getModel() {
@@ -68,28 +43,28 @@ public class Car {
         this.model = model;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public long getPrice() {
-        return price;
+    public float getMsrp() {
+        return msrp;
     }
 
-    public void setPrice(long price) {
-        this.price = price;
+    public void setMsrp(float msrp) {
+        this.msrp = msrp;
     }
 
-    public String getCarimgae() {
-        return carimgae;
+    public String getCarURL() {
+        return carURL;
     }
 
-    public void setCarimgae(String carimgae) {
-        this.carimgae = carimgae;
+    public void setCarURL(String carURL) {
+        this.carURL = carURL;
     }
 
     public Category getCategory() {

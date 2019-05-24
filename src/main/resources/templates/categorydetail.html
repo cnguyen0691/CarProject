@@ -10,7 +10,7 @@
 <body>
 <div th:replace="base :: navlinks"></div>
 
-<p />
+<p/>
 
 <div class="row text-center">
     <div th:each="car : ${cars}">
@@ -19,10 +19,10 @@
             <!--<div th:if="${car.category.id == category.id}">-->
             <div class="card text-center">
                 <div class="card-header text-center"><span
-                        th:text="${car.make + ' ' +  car.model}"></span></div>
+                        th:text="${car.manufacturer + ' ' +  car.model}"></span></div>
                 <div class="card-body">
-                    <div th:if="${car.carimage != ''}">
-                        <img class="card-img-top user-img" th:src="${car.carimage}" alt="car">
+                    <div th:if="${car.carURL != ''}">
+                        <img class="card-img-top user-img" th:src="${car.carURL}" alt="car">
                     </div>
                     <a class="card-link btn btn-warning"
                        th:href="@{/detail/{id}(id=${car.id})}">More
@@ -34,7 +34,6 @@
 
     </div><!--end div th:each-->
 </div><!--end div class row-->
-
 
 
 
