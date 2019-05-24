@@ -14,24 +14,35 @@
 
 <div class="container card " style="width: 18rem;">
     <div th:each="car : ${cars}">
-        <div th:if="${car.carimg != ''}">
-            <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
-        </div>
-        <div class="row card-body">
-            <h5 class="card-title">
-                <span th:text="${car.make}"></span>
-            </h5>
-                <p class="card-text">
-                    <span th:text="${car.model}"></span><br/>
-                    <span th:text="${car.year}"></span><br/>
-                    <span th:text="${car.price}"></span>
-                </p>
+        <div class="card-body">
+            <div th:if="${car.carimg != ''}">
+                <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
+            </div>
+            <h4 class="card-title text-center">
+                <span th:text="${car.make + ' ' +  car.model}"></span>
+            </h4>
+            <p class="card-text">
+                <strong>Category: </strong><br/>
+                <span
+                        th:if="${car.category != null}">
+                <span
+                        th:text="${car.category.categoryName}">
+
+                </span>
+            </span>
+            </p>
+            <p class="card-text"><strong>Year: </strong><span th:text="${car.year}"></span></p>
+            <p class="card-text"><strong>Price: $</strong><span
+                    th:text="${#numbers.formatDecimal(car.price, 0, 'COMMA', 2, 'POINT')}"></span>
+            </p>
+
+
+
                     <a class="card-link btn btn-warning"
                        th:href="@{/detail/{id}(id=${car.id})}">
                         More Info
                     </a>
-
-            </div>
+        </div>
         </div>
 </div>
 

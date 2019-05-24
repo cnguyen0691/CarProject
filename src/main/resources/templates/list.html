@@ -11,9 +11,9 @@
 
 <div th:replace="base :: navlinks"></div>
 
-
 <div th:replace="base:: logo "></div>
-<div class="container ">
+<div class="row">
+<div class="container col-md-4 ">
         <span th:each="category : ${categories}">
             <span class="cat-btn">
                 <a th:href="@{/detailcategory/{id}(id=${category.id})}">[[${category
@@ -21,11 +21,12 @@
                 </a>
             </span>
         </span>
-
+</div>
 </div>
 
-<div class="container card row" style="width: 18rem;">
-    <div  th:each="car : ${cars}">
+<div class="row">
+<div class="container col-md-4 " style="width: 18rem;">
+    <div class=""  th:each="car : ${cars}">
         <div class="card-img-top" th:if="${car.carimg != ''}">
             <img class="card-img-top user-img" th:src="${car.carimg}" alt="car">
         </div>
@@ -48,11 +49,14 @@
                     th:text="${#numbers.formatDecimal(car.price, 0, 'COMMA', 2, 'POINT')}"></span>
             </p>
         </div>
-<a class="card-link btn btn-warning"
-   th:href="@{/detail/{id}(id=${car.id})}">More
-    Info</a>
+        <a class="card-link btn btn-warning"
+           th:href="@{/detail/{id}(id=${car.id})}">More Info</a>
     </div>
 </div>
+</div>
+
+
+
 
 <div th:replace="base::footer"></div>
 
