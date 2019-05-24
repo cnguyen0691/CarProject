@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+
+<p/>
+
+<div class="col-xs text-center">
+
+    <div class="card">
+        <div class="card-body">
+            <div th:if="${car.carimgae != ''}">
+                <img class="card-img-top user-img" th:src="${car.carimgae}" alt="car">
+            </div>
+            <h4 class="card-title text-center"><span th:text="${car.make + ' ' +  car.model}"></span></h4>
+            <p class="card-text"><strong>Category: </strong><span
+                    th:if="${car.category != null}"><span
+                    th:text="${car.category.categoryName}"></span></span></p>
+            <p class="card-text"><strong>Year: </strong><span th:text="${car.year}"></span></p>
+            <p class="card-text"><strong>MSRP: $</strong><span
+                    th:text="${#numbers.formatDecimal(car.msrp, 0, 'COMMA', 2, 'POINT')}"></span></p>
+            <div class="text-center">
+                <a class="btn btn-warning" th:href="@{/update/{id}(id=${car.id})}">Update</a>
+                <a class="btn btn-warning" th:href="@{/delete/{id}(id=${car.id})}">Delete</a>
+            </div>
+        </div>
+    </div>
+
+</div><!--end div class col-xs-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

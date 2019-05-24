@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+
+<p/>
+
+<form action="#"
+      th:action="@{/processcar}"
+      th:object="${car}"
+      enctype="multipart/form-data"
+      method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <div class="form-group">
+        <label for="manufacturer">Manufacturer:</label>
+        <input class="form-control" type="text" id="manufacturer" th:field="*{make}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="model">Model:</label>
+        <input class="form-control" type="text" id="model" th:field="*{model}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="year">Year:</label>
+        <input class="form-control" type="text" id="year" th:field="*{year}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="msrp">MSRP:</label>
+        <input class="form-control" type="text" id="msrp" th:field="*{price}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <select name="category" id="category" class="custom-select" th:field="*{category}">
+            <option value="">Select Category</option>
+            <option th:each="category : ${categories}"
+                    th:value="${category.id}"
+                    th:utext="${category.categoryName}"/>
+        </select>
+    </div>
+
+    <div th:if="${imageURL != null}">
+        <img th:src="${imageURL}" alt="meme image"/>
+    </div>
+
+    <input type="hidden" th:value="${imageURL}" name="hiddenImgURL"/>
+
+    <div class="form-group">
+        <span th:inline="text">[[${imageLabel}]]</span>: <input class="form-control-file" type="file" name="file"/>
+    </div>
+
+    <input class="submit-btn" type="submit" value="Submit"/>
+</form>
+    <div class="form-group">
+        <span th:inline="text">[[${imageLabel}]]</span>: <input class="form-control-file" type="file" name="file"/>
+    </div>
+
+    <input class="submit-btn" type="submit" value="Submit"/>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>
