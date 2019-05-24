@@ -13,13 +13,14 @@
 
 <div th:replace="base:: logo "></div>
 
-<div class="container  row">
+<div class="container  ">
+
         <span th:each="category : ${categories}">
-            <span class="cat-btn">
-                <a th:href="@{/detailcategory/{id}(id=${category.id})}">[[${category
+            <button type="button" class="btn btn-primary">
+                <a style="color: white;" th:href="@{/detailcategory/{id}(id=${category.id})}">[[${category
                 .categoryName}]]
                 </a>
-            </span>
+            </button>
         </span>
 
 </div>
